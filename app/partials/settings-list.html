@@ -1,0 +1,159 @@
+<div class="container">
+
+    <div ng-show="!!!apiStatus" class="alert alert-error">
+        Failed to connect to the API
+    </div>
+
+    <!-- API -->
+    <div class="well">
+        <h4>API</h4>
+
+        <form class="form-horizontal" name="updateApiUrlForm">
+            <div class="control-group">
+                <label class="control-label" for="input-api-endpoint">URL</label>
+                <div class="controls">
+                    <input ng-model="apiUrl" type="text" id="input-api-endpoint" required>
+                    <button ng-click="checkApi()" ng-disabled="updateApiUrlForm.$invalid" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div ng-show="!!apiStatus">
+        <form class="form-horizontal" name="updateSettingsForm">
+
+            <!-- General -->
+            <div class="well">
+                <h4>General</h4>
+
+                <!-- Max tries -->
+                <div class="control-group">
+                    <label class="control-label" for="transfers-max-tries">Max tries</label>
+                    <div class="controls">
+                        <input ng-model="settings.general.max_tries" class="span1" type="number" min="1" max="10" id="transfers-max-tries">
+                    </div>
+                </div>
+
+                <!-- Retry delta -->
+                <div class="control-group">
+                    <label class="control-label" for="transfers-retry-delta">Retry delta</label>
+                    <div class="controls">
+                        <input ng-model="settings.general.retry_delta" class="span1" type="number" min="1" max="99999" id="transfers-retry-delta"><span class="add-on"> seconds</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Paths -->
+            <div class="well">
+                <h4>Paths</h4>
+
+                <!-- Tmp -->
+                <div class="control-group">
+                    <label class="control-label" for="path-tmp">Temp path</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.paths.tmp" type="text" id="path-tmp">
+                    </div>
+                </div>
+
+                <!-- Torent default -->
+                <div class="control-group">
+                    <label class="control-label" for="path-torrent-default">Default torrent path</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.paths.torrent_default" type="text" id="path-torrent-default">
+                    </div>
+                </div>
+
+                <!-- Invalid -->
+                <div class="control-group">
+                    <label class="control-label" for="path-invalid">Invalid</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.paths.invalid" type="text" id="path-invalid">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Transmission -->
+            <div class="well">
+                <h4>Transmission</h4>
+
+                <!-- Host -->
+                <div class="control-group">
+                    <label class="control-label" for="transmission-host">Host</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.transmission.host" type="text" id="transmission-host">
+                    </div>
+                </div>
+
+                <!-- Port -->
+                <div class="control-group">
+                    <label class="control-label" for="transmission-port">Port</label>
+                    <div class="controls">
+                        <input ng-model="settings.transmission.port" class="span1" type="number" min="1024" max="65536" id="transmission-port">
+                    </div>
+                </div>
+
+                <!-- Username -->
+                <div class="control-group">
+                    <label class="control-label" for="transmission-username">Username</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.transmission.username" type="text" id="transmission-username">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="control-group">
+                    <label class="control-label" for="transmission-password">Password</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.transmission.password" type="text" id="transmission-password">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Torrent -->
+            <div class="well">
+                <h4>Torrent</h4>
+
+                <!-- Active delta -->
+                <div class="control-group">
+                    <label class="control-label" for="torrent-inactive-delta">Inactive delta</label>
+                    <div class="controls">
+                        <input ng-model="settings.torrent.inactive_delta" class="span1" type="number" min="1" max="9999" id="torrent-inactive-delta"><span class="add-on"> hours</span>
+                    </div>
+                </div>
+
+                <!-- Added delta -->
+                <div class="control-group">
+                    <label class="control-label" for="torrent-added-delta">Added delta</label>
+                    <div class="controls">
+                        <input ng-model="settings.torrent.added_delta" class="span1" type="number" min="1" max="9999" id="torrent-added-delta"><span class="add-on"> hours</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Rsync -->
+            <div class="well">
+                <h4>Rsync</h4>
+
+                <!-- Default args -->
+                <div class="control-group">
+                    <label class="control-label" for="rsync-args">Default args</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.rsync.default_args" type="text" id="rsync-args">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="well">
+                <button class="btn btn-warning">Reset</button>
+                <button ng-click="updateSettings()" ng-disabled="updateSettingsForm.$invalid" class="btn btn-primary">Save</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>

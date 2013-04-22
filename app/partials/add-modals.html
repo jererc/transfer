@@ -1,0 +1,44 @@
+<div ng-controller="AddModalCtrl">
+
+    <!-- Add transfer modal -->
+    <div modal-focus="#inputSrc" id="modal-add-transfer" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Add transfer</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="createTransferForm" novalidate>
+
+                <!-- Type -->
+                <div class="control-group">
+                    <label class="control-label" for="inputType">Type</label>
+                    <div class="controls">
+                        <select ng-model="transfer.type" ng-options="t.name for t in types" required></select>
+                    </div>
+                </div>
+
+                <!-- Source -->
+                <div class="control-group">
+                    <label class="control-label" for="inputSrc">Source</label>
+                    <div class="controls">
+                        <input ng-model="transfer.src" type="text" id="inputSrc" required>
+                    </div>
+                </div>
+
+                <!-- Destination -->
+                <div class="control-group">
+                    <label class="control-label" for="inputDst">Destination</label>
+                    <div class="controls">
+                        <input ng-model="transfer.dst" type="text" id="inputDst" required>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button submit-modal="createTransfer()" ng-disabled="createTransferForm.$invalid" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+    </div>
+
+</div>

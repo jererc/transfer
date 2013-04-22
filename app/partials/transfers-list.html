@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="accordion" id="transfers-accordion">
+        <div ng-repeat="transfer in transfers" class="accordion-group">
+
+            <!-- Header -->
+            <div class="accordion-heading">
+                <span class="text-center label item-status" ng-class="getStatusClass(transfer)">{{transfer.type}}</span>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#transfers-accordion" href="#{{transfer.id}}">{{transfer.name | truncate:80}}</a>
+            </div>
+
+            <!-- Content -->
+            <div id="{{transfer.id}}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <button ng-click="removeTransfer(transfer.id)" class="btn btn-danger pull-right" type="button">Remove</button>
+
+                    <ul class="unstyled">
+                        <li><strong>Source:</strong> {{transfer.src | ifList}}</li>
+                        <li><strong>Destination:</strong> {{transfer.dst}}</li>
+                        <li><strong>Size:</strong> {{transfer.size | size}} MB</li>
+                        <li><strong>Transferred:</strong> {{transfer.transferred | size}} MB</li>
+                        <li><strong>Transfer rate:</strong> {{transfer.transfer_rate | transferRate}} KB/s</li>
+                        <li><strong>Progress:</strong> {{transfer.progress | progress}} %</li>
+                    </ul>
+
+                    <div class="progress">
+                        <div class="bar" style="width: {{transfer.progress}}%;"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
