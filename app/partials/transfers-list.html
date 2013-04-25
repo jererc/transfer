@@ -4,7 +4,7 @@
 
             <!-- Header -->
             <div class="accordion-heading">
-                <span class="text-center label item-status" ng-class="getStatusClass(transfer)">{{transfer.type}}</span>
+                <span class="text-center label item-status" ng-class="statusInfo[!!!transfer.error].labelClass">{{transfer.type}}</span>
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#transfers-accordion" href="#{{transfer.id}}">{{transfer.name | truncate:80}}</a>
             </div>
 

@@ -1,8 +1,6 @@
 'use strict';
 
-/* App Module */
-
-angular.module('transferApp', ['transferServices', 'transferDirectives', 'transferFilters']).
+angular.module('transferApp', ['transferServices', 'transferDirectives', 'transferFilters', 'angularUtils']).
     config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/', {redirectTo: '/transfers'}).

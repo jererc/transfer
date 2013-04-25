@@ -96,11 +96,12 @@ function AddModalCtrl($rootScope, $scope, apiSvc, eventSvc, utilsSvc) {
                     console.error('failed to create transfer:', data.error);
                 } else {
                     eventSvc.emit('updateTransfers');
+                    $scope.transfer = {};
                 }
             });
     };
 
-    $rootScope.$on('addModalOpen', function(event, data) {
+    $rootScope.$on('openAddModal', function(event, data) {
         initAddForm();
     });
 
@@ -115,6 +116,11 @@ function AddModalCtrl($rootScope, $scope, apiSvc, eventSvc, utilsSvc) {
 function TransfersListCtrl($rootScope, $scope, $timeout, $location, apiSvc, eventSvc, utilsSvc) {
 
     $scope.transfers = [];
+
+    $scope.statusInfo = {
+        true: {labelClass: 'label-success'},
+        false: {labelClass: 'label-important'},
+    };
 
     var active = true;
     var cacheDelta = 5000;
@@ -134,22 +140,11 @@ function TransfersListCtrl($rootScope, $scope, $timeout, $location, apiSvc, even
                     $location.path('settings');
                 }).
                 success(function(data) {
-                    utilsSvc.updateList($scope.transfers, data.result, '_id');
+                    utilsSvc.updateList($scope.transfers, data.result);
                     updateTimeout = $timeout(updateTransfers, cacheDelta);
                 });
         }
     }
-
-    $scope.getStatusClass = function(transfer) {
-        switch (!!transfer.error) {
-            case true:
-                return 'label-warning';
-                break;
-            default:
-                return 'label-success';
-                break;
-        }
-    };
 
     $scope.removeTransfer = function(id) {
         apiSvc.removeTransfer(id).
