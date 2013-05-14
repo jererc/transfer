@@ -6,6 +6,7 @@
             <div class="accordion-heading">
                 <span class="text-center label item-status" ng-class="statusInfo[!!!transfer.error].labelClass">{{transfer.type}}</span>
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#transfers-accordion" href="#{{transfer.id}}">{{transfer.name | truncate:80}}</a>
+                <span ng-show="{{transfer.tries > 1}}" class="label label-important pull-right">{{transfer.tries}}</span>
             </div>
 
             <!-- Content -->
@@ -18,7 +19,6 @@
                         <li><strong>Destination:</strong> {{transfer.dst}}</li>
                         <li><strong>Size:</strong> {{transfer.size | size}} MB</li>
                         <li><strong>Transferred:</strong> {{transfer.transferred | size}} MB</li>
-                        <li><strong>Transfer rate:</strong> {{transfer.transfer_rate | transferRate}} KB/s</li>
                         <li><strong>Progress:</strong> {{transfer.progress | progress}} %</li>
                     </ul>
 

@@ -24,16 +24,16 @@
 
         // Transfers
         this.createTransfer = function(data) {
-            return $http.post(this.getUrl() + '/transfers/create', data);
+            return $http.post(this.getUrl() + '/transfer/create', data);
         };
 
         this.listTransfers = function() {
-            return $http.get(this.getUrl() + '/transfers/list');
+            return $http.get(this.getUrl() + '/transfer/list');
         };
 
         this.removeTransfer = function(id) {
-            return $http.post(this.getUrl() + '/transfers/remove',
-                {id: id});
+            return $http.post(this.getUrl() + '/transfer/remove',
+                    {id: id});
         };
 
         // Settings

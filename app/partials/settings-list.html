@@ -50,25 +50,55 @@
 
                 <!-- Tmp -->
                 <div class="control-group">
-                    <label class="control-label" for="path-tmp">Temp path</label>
+                    <label class="control-label" for="path-tmp">Temp</label>
                     <div class="controls controls-row">
                         <input ng-model="settings.paths.tmp" type="text" id="path-tmp">
                     </div>
                 </div>
 
-                <!-- Torent default -->
+                <!-- Default -->
                 <div class="control-group">
-                    <label class="control-label" for="path-torrent-default">Default torrent path</label>
+                    <label class="control-label" for="path-default">Default destination</label>
                     <div class="controls controls-row">
-                        <input ng-model="settings.paths.torrent_default" type="text" id="path-torrent-default">
+                        <input ng-model="settings.paths.default" type="text" id="path-default">
                     </div>
                 </div>
 
                 <!-- Invalid -->
                 <div class="control-group">
-                    <label class="control-label" for="path-invalid">Invalid</label>
+                    <label class="control-label" for="path-invalid">Invalid destination</label>
                     <div class="controls controls-row">
                         <input ng-model="settings.paths.invalid" type="text" id="path-invalid">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sabnzbd -->
+            <div class="well">
+                <h4>Sabnzbd</h4>
+
+                <!-- Host -->
+                <div class="control-group">
+                    <label class="control-label" for="sabnzbd-host">Host</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.sabnzbd.host" type="text" id="sabnzbd-host">
+                    </div>
+                </div>
+
+                <!-- Port -->
+                <div class="control-group">
+                    <label class="control-label" for="sabnzbd-port">Port</label>
+                    <div class="controls">
+                        <input ng-model="settings.sabnzbd.port" class="span1" type="number" min="1024" max="65536" id="sabnzbd-port">
+                    </div>
+                </div>
+
+                <!-- API key -->
+                <div class="control-group">
+                    <label class="control-label" for="sabnzbd-apikey">API key</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.sabnzbd.api_key" type="text" id="sabnzbd-apikey">
                     </div>
                 </div>
 

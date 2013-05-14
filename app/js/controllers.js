@@ -4,7 +4,7 @@
 //
 // Main
 //
-function MainCtrl($rootScope, $scope, $location, apiSvc, eventSvc, utilsSvc) {
+function MainCtrl($rootScope, $scope, $location, rootScopeSvc, apiSvc, eventSvc, utilsSvc) {
 
     $rootScope.apiStatus = false;
 
@@ -38,27 +38,6 @@ function MainCtrl($rootScope, $scope, $location, apiSvc, eventSvc, utilsSvc) {
         }
     }
 
-    $rootScope.isMenuActive = function(path) {
-        if ($location.path().substr(0, path.length) == path) {
-            return 'active';
-        }
-        return '';
-    };
-
-    $rootScope.inArray = function(value, array) {
-        if (!array) {
-            return -1;
-        }
-        return utilsSvc.getIndex(value, array) != -1;
-    };
-
-    $rootScope.exists = function(val) {
-        if (angular.isArray(val)) {
-            return !!val.length;
-        }
-        return !!val;
-    };
-
     $rootScope.$on('checkApi', function(event, args) {
         checkApi((!!args) ? args.url : null);
     });
@@ -73,9 +52,10 @@ function MainCtrl($rootScope, $scope, $location, apiSvc, eventSvc, utilsSvc) {
 //
 function AddModalCtrl($rootScope, $scope, apiSvc, eventSvc, utilsSvc) {
 
-    $scope.transfer = {};
     $scope.types = [
-        {'name': 'Auto', 'value': null},
+        {'name': 'Auto detect', 'value': null},
+        {'name': 'Binsearch', 'value': 'binsearch'},
+        {'name': 'Filestube', 'value': 'filestube'},
         {'name': 'Torrent', 'value': 'torrent'},
         ];
 
@@ -83,20 +63,23 @@ function AddModalCtrl($rootScope, $scope, apiSvc, eventSvc, utilsSvc) {
         if ($scope.createTransferForm) {
             $scope.createTransferForm.$setPristine();
         }
-        $scope.transfer = {
-            type: $scope.transfer.type || $scope.types[0],
-        };
+        if (!$scope.transfer) {
+            $scope.transfer = {
+                type: $scope.types[0],
+            };
+        }
     }
 
     $scope.createTransfer = function() {
         $scope.transfer.type = $scope.transfer.type.value;
+
         apiSvc.createTransfer($scope.transfer).
             success(function(data) {
                 if (data.error) {
                     console.error('failed to create transfer:', data.error);
                 } else {
                     eventSvc.emit('updateTransfers');
-                    $scope.transfer = {};
+                    $scope.transfer = undefined;
                 }
             });
     };
@@ -113,7 +96,7 @@ function AddModalCtrl($rootScope, $scope, apiSvc, eventSvc, utilsSvc) {
 //
 // Transfers list
 //
-function TransfersListCtrl($rootScope, $scope, $timeout, $location, apiSvc, eventSvc, utilsSvc) {
+function TransferListCtrl($rootScope, $scope, $timeout, $location, apiSvc, eventSvc, utilsSvc) {
 
     $scope.transfers = [];
 
