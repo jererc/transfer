@@ -54,7 +54,6 @@ function AddModalCtrl($rootScope, $scope, apiSvc, eventSvc, utilsSvc) {
     $scope.types = [
         {'name': 'Auto detect', 'value': null},
         {'name': 'Binsearch', 'value': 'binsearch'},
-        {'name': 'Filestube', 'value': 'filestube'},
         {'name': 'Torrent', 'value': 'torrent'},
         ];
 
