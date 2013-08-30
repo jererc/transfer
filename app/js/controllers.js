@@ -96,8 +96,9 @@ function AddModalCtrl($rootScope, $scope, apiSvc, eventSvc, utilsSvc) {
 //
 function TransferListCtrl($rootScope, $scope, $timeout, $location, apiSvc, eventSvc, utilsSvc) {
 
-    $scope.transfers = [];
+    $rootScope.hasResult = true;
 
+    $scope.transfers = [];
     $scope.statusInfo = {
         true: {labelClass: 'label-success'},
         false: {labelClass: 'label-important'},
@@ -122,6 +123,7 @@ function TransferListCtrl($rootScope, $scope, $timeout, $location, apiSvc, event
                 }).
                 success(function(data) {
                     utilsSvc.updateList($scope.transfers, data.result);
+                    $rootScope.hasResult = data.result.length > 0 ? true : false;
                     updateTimeout = $timeout(updateTransfers, cacheDelta);
                 });
         }
