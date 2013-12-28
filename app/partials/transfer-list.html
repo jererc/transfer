@@ -15,8 +15,6 @@
             <!-- Content -->
             <div id="{{transfer.id}}" class="accordion-body collapse">
                 <div class="accordion-inner">
-                    <button ng-click="removeTransfer(transfer.id)" class="btn btn-danger pull-right" type="button">Remove</button>
-
                     <ul class="unstyled">
                         <li><strong>Source:</strong> {{transfer.src | ifList}}</li>
                         <li><strong>Destination:</strong> {{transfer.dst}}</li>
@@ -28,6 +26,8 @@
                     <div class="progress">
                         <div class="bar" style="width: {{transfer.progress}}%;"></div>
                     </div>
+
+                    <button ng-click="removeTransfer(transfer.id)" class="btn btn-danger" type="button">Remove</button>
 
                 </div>
             </div>
